@@ -1,0 +1,70 @@
+/* table {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: medium;
+}
+
+tr {
+  outline: thin solid;
+}
+
+th {
+  color: black;
+  padding: 5px;
+  margin: 0;
+}
+
+td {
+  color: black;
+  padding: 5px;
+  width: 500px;
+} */
+
+tr:nth-child(even) {
+  background-color: rgb(230, 225, 225);
+}
+
+/* .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.tableData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 70%;
+  margin: auto;
+}
+
+/* .input-field {
+  width: 400px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+} */
+
+span {
+  margin: 30px;
+}
+
+.searchOpt {
+  margin: 40px;
+}
+
+.tableData .visible {
+  display: none;
+}
+.noData {
+  visibility: visible;
+
+  color: red;
+  font-size: larger;
+  text-align: center;
+}
+
+.noData .noDataVisible {
+  display: block;
+}
