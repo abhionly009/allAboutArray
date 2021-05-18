@@ -37,8 +37,6 @@ const nodata = document.getElementById('noData');
 
 const createUserBtn = document.getElementById('createUser');
 
-const sortBtn = document.getElementById('sort');
-
 
 /**  @Params(filter,sort) filter is the keyword which you are looking into either in name column or in company column,
  *  sort is parameter for sorting data according to age
@@ -53,28 +51,28 @@ function displayUserInfo(filter ='', sort = '') {
     let cell2 = row.insertCell(2);
 
     cell0.innerHTML = 'Name';
-    cell1.innerHTML = 'Age' + '<span><i class="fa fa-sort" id="sort"></i><span>'
+    cell1.innerHTML = 'Age' + '<span id="sort"><i class="fa fa-sort" ></i><span>'
     cell2.innerHTML = 'Comapny';
     
     /** This will filter array based on name and company you are looking for.
      * Here you can see I have used array.filter(), I order to get get new array based on passed conditions.
     */
-    const filteredUsers = !filter ? users : users.filter(user => (user.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+    let filteredUsers = !filter ? users : users.filter(user => (user.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     || user.company.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     ))
 
-    // Need to sort this after getting filtered
-    // filteredUsers = !sort ? users :users.sort(
-    //     (a, b) => {
-    //         if (a.age > b.age) {
-    //             return 1;
-    //         } else if (a.age === b.age) {
-    //             return 0;
-    //         } else {
-    //             return -1;
-    //         }
-    //     }
-    // )
+    //It will sort the array in ascending order
+    filteredUsers = !sort ? filteredUsers :filteredUsers.sort(
+        (a, b) => {
+            if (a.age > b.age) {
+                return 1;
+            } else if (a.age === b.age) {
+                return 0;
+            } else {
+                return -1;
+            }
+        }
+    )
     
 
     /** If array's length is equal to zero remove table from dom and add no data message else otherwise */
@@ -138,6 +136,8 @@ function getFilterData(filter) {
 const betterSearch = function callBackForFilter() {
     setTimeout(getFilterData(searchBox.value), 5000);
 }
+
+const sortBtn = document.getElementById('sort');
 
 // sort Handler to be called on click event of sort button.
 function sortUserHander() {

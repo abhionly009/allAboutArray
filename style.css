@@ -48,6 +48,7 @@ tr:nth-child(even) {
 
 span {
   margin: 30px;
+  cursor: pointer;
 }
 
 .searchOpt {
