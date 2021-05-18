@@ -42,7 +42,6 @@ const sortBtn = document.getElementById('sort');
 
 /**  @Params(filter,sort) filter is the keyword which you are looking into either in name column or in company column,
  *  sort is parameter for sorting data according to age
- * 
  */
 function displayUserInfo(filter ='', sort = '') {
 
@@ -57,7 +56,9 @@ function displayUserInfo(filter ='', sort = '') {
     cell1.innerHTML = 'Age' + '<span><i class="fa fa-sort" id="sort"></i><span>'
     cell2.innerHTML = 'Comapny';
     
-    /** This will filter array based on name and company you are looking for */
+    /** This will filter array based on name and company you are looking for.
+     * Here you can see I have used array.filter(), I order to get get new array based on passed conditions.
+    */
     const filteredUsers = !filter ? users : users.filter(user => (user.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     || user.company.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     ))
@@ -105,7 +106,6 @@ function displayUserInfo(filter ='', sort = '') {
 window.onload = displayUserInfo();
 
 
-
 // Added event listner to listen click event on create button once user fills the data into form.
 createUserBtn.addEventListener('click', function saveUser() {
     let nameUsrInpt = document.getElementById('name');
@@ -117,7 +117,6 @@ createUserBtn.addEventListener('click', function saveUser() {
         age: ageUsrInpt.value,
         company: companyUsrInpt.value
     }
-    console.log(user);
     if (user.name === '' || user.age === '' || user.company === '') {
         return;
     }
@@ -135,14 +134,15 @@ function getFilterData(filter) {
   
 }
 
-// Achiving throtteling and calling this method on every key press in search feild
+// Achiving throtteling and calling this method on every key press in search field.
 const betterSearch = function callBackForFilter() {
     setTimeout(getFilterData(searchBox.value), 5000);
 }
 
+// sort Handler to be called on click event of sort button.
 function sortUserHander() {
     displayUserInfo('', 'yes');
 
 }
-// added event listener on sort icon to sort array according to age
+// added event listener on sort icon to sort array according to age.
 sortBtn.addEventListener('click', sortUserHander);
