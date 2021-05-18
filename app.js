@@ -35,7 +35,15 @@ const searchBox = document.getElementById('search');
 
 const nodata = document.getElementById('noData');
 
+const createUserBtn = document.getElementById('createUser');
 
+const sortBtn = document.getElementById('sort');
+
+
+/**  @Params(filter,sort) filter is the keyword which you are looking into either in name column or in company column,
+ *  sort is parameter for sorting data according to age
+ * 
+ */
 function displayUserInfo(filter ='', sort = '') {
 
     table.innerHTML = "";
@@ -49,6 +57,7 @@ function displayUserInfo(filter ='', sort = '') {
     cell1.innerHTML = 'Age' + '<span><i class="fa fa-sort" id="sort"></i><span>'
     cell2.innerHTML = 'Comapny';
     
+    /** This will filter array based on name and company you are looking for */
     const filteredUsers = !filter ? users : users.filter(user => (user.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     || user.company.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     ))
@@ -67,7 +76,7 @@ function displayUserInfo(filter ='', sort = '') {
     // )
     
 
-
+    /** If array's length is equal to zero remove table from dom and add no data message else otherwise */
     if (filteredUsers.length === 0) {
         table.classList.add('visible');
         nodata.classList.add('noData');
@@ -92,12 +101,12 @@ function displayUserInfo(filter ='', sort = '') {
 
 }
 
+// calling displayUserInfo onload of web page. 
 window.onload = displayUserInfo();
 
-const createUserBtn = document.getElementById('createUser');
-const sortBtn = document.getElementById('sort');
 
 
+// Added event listner to listen click event on create button once user fills the data into form.
 createUserBtn.addEventListener('click', function saveUser() {
     let nameUsrInpt = document.getElementById('name');
     let ageUsrInpt = document.getElementById('age');
@@ -126,7 +135,7 @@ function getFilterData(filter) {
   
 }
 
-
+// Achiving throtteling and calling this method on every key press in search feild
 const betterSearch = function callBackForFilter() {
     setTimeout(getFilterData(searchBox.value), 5000);
 }
@@ -135,5 +144,5 @@ function sortUserHander() {
     displayUserInfo('', 'yes');
 
 }
-
+// added event listener on sort icon to sort array according to age
 sortBtn.addEventListener('click', sortUserHander);
